@@ -1,8 +1,7 @@
-# Unreal Documentation
+# Debug Tools
 
-## Debug
+## Messaging
 
-### Messaging
 ```C++
   
   /**
@@ -23,46 +22,32 @@
   // Example
 
   // Print string
-  GEngine->AddOnScreenDebugMessage( -1, 5.f, FColor:: Green, "Message" );
-
-  // Print string
   GEngine->AddOnScreenDebugMessage( -1, 5.f, FColor:: Green, "Message" ); 
+
+  // Print bool
+  GEngine->AddOnScreenDebugMessage( -1, 5.f, FColor:: Green, 
+                                  MyBool ? "true" : "false" );
+
+  // Print int
+  GEngine->AddOnScreenDebugMessage( -1, 5.f, FColor:: Green, 
+                                  FString::FromInt( MyInt ) );
+
+  // Print float
+  GEngine->AddOnScreenDebugMessage( -1, 5.f, FColor:: Green, 
+                                  FString::SanitizeFloat( MyFloat ) );
+
   
 
 ```
 
-#### float to String
-
-```c++
-  
-  // Example
-  float f = 0.1f;
-  FString::SanitizeFloat( f );
-  ```
-
-### Drawing
+## Drawing
 
 ```C++
-  DrawDebugDirectionalArrow
-  
+
+  //Example
+  DrawDebugDirectionalArrow(
+    GetWorld(), parent->GetActorLocation(),
+    parent->GetActorLocation() + ( search_direction * Range ), 10.f,
+    FColor::Green, false, 1.f, ( uint8 )0U, 2.f );
 
 ```
-
-## Math
-
-### FQuat (Quaternion)
-```C++
-  
-  /**
-   * Creates and initializes a new quaternion from the a rotation around the given
-   * axis.
-   *
-   * @param Axis assumed to be a normalized vector
-   * @param Angle angle to rotate above the given axis (in radians)
-   */
-  TQuat( TVector< T > Axis, T AngleRad );
-  
-  // Example
-  
-  
-  ```
